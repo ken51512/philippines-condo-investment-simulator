@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Philippines Condo Investment Simulator / フィリピン コンドミニアム投資シミュレーター</title>
+  <style>
+    :root{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:#172033;background:#f5f7fb;line-height:1.45}
+    *{box-sizing:border-box} body{margin:0}.shell{max-width:1280px;margin:auto;padding:20px}.hero{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:18px}.eyebrow{color:#5a67d8;font-weight:800;letter-spacing:.08em;font-size:.75rem}.hero h1{margin:.25rem 0;font-size:clamp(1.45rem,3vw,2.25rem)}.sub{margin:0;color:#647089}
+    .panel,.card{background:#fff;border:1px solid #e5e9f2;border-radius:16px;box-shadow:0 8px 28px #1720330b}.panel{padding:20px;margin-bottom:18px}.panel h2{margin:0 0 16px;font-size:1.1rem}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:.84rem;font-weight:700;color:#46516a}.hint{font-size:.75rem;color:#7b8497;font-weight:400}.field input,.field select{width:100%;border:1px solid #ccd3e1;border-radius:10px;padding:10px 11px;font:inherit;background:#fff;color:#172033}.field input:focus,.field select:focus{outline:3px solid #cfd5ff;border-color:#5a67d8}.span-2{grid-column:span 2}.tax-row{display:flex;gap:8px;align-items:center}.tax-row input{flex:1}.status{font-size:.75rem;font-weight:700;white-space:nowrap}.status.auto{color:#237a57}.status.manual{color:#ac5a15}.investment{display:grid;grid-template-columns:1fr 1.3fr;gap:18px;align-items:center}.big-number{font-size:clamp(1.8rem,4vw,3rem);font-weight:850;color:#29357a}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{padding:12px;background:#f8f9fc;border-radius:10px}.metric span{display:block;color:#6b7488;font-size:.78rem}.metric strong{display:block;margin-top:3px;font-size:1.03rem}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.scenario{overflow:hidden}.scenario .bar{height:6px}.high .bar{background:#2f9e74}.middle .bar{background:#5a67d8}.low .bar{background:#d8873f}.scenario-body{padding:17px}.scenario h3{margin:0 0 12px;font-size:1.25rem}.scenario h3 small{display:block;color:#7b8497;font-size:.76rem;font-weight:500}.stat-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat-list span{display:block;color:#6b7488;font-size:.78rem}.stat-list strong{font-size:1rem}.compare{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.compare-card{padding:15px;border-left:4px solid #cfd5ff;background:#f8f9fc;border-radius:10px}.compare-card h3{margin:0 0 8px}.compare-card p{margin:4px 0;color:#5c667b;font-size:.86rem}.compare-card b{color:#172033}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.tabs button{border:1px solid #cbd2e1;background:#fff;border-radius:999px;padding:8px 15px;font-weight:800;cursor:pointer}.tabs button.active{background:#29357a;color:#fff;border-color:#29357a}.table-wrap{overflow-x:auto;border:1px solid #e5e9f2;border-radius:10px}table{border-collapse:collapse;width:100%;min-width:1060px;font-size:.82rem}th,td{padding:10px;border-bottom:1px solid #edf0f5;text-align:right;white-space:nowrap}th{background:#f8f9fc;color:#59647a;font-weight:800}th:first-child,td:first-child{text-align:center}tr:last-child td{border-bottom:0}.note{color:#69748a;font-size:.8rem;margin:.4rem 0 0}.section-title{display:flex;justify-content:space-between;align-items:baseline;gap:10px}.section-title small{color:#7b8497;font-weight:500}.empty{color:#7b8497;text-align:center;padding:20px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.investment{grid-template-columns:1fr}.cards,.compare{grid-template-columns:1fr}}
+    @media(max-width:560px){.shell{padding:12px}.hero{display:block}.grid{grid-template-columns:1fr}.span-2{grid-column:span 1}.metrics{grid-template-columns:1fr 1fr}.panel{padding:15px}.stat-list{gap:10px}}
+    .footer-note{color:#7b8497;font-size:.72rem;text-align:center;padding:4px 12px 18px;line-height:1.55}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="hero"><div><div class="eyebrow">REAL ESTATE ANALYSIS / 不動産分析</div><h1>Philippines Condo Investment Simulator<br><span class="sub">フィリピン コンドミニアム投資シミュレーター</span></h1></div><div class="sub">Cash purchase / 現金購入前提</div></header>
+
+  <section class="panel">
+    <h2>Property Inputs / 物件入力</h2>
+    <div class="grid">
+      <div class="field span-2"><label for="name">Property name / 物件名</label><input id="name" placeholder="例: Rockwell Unit 1BR"></div>
+      <div class="field"><label for="areaName">Area / エリア</label><select id="areaName"><option>Rockwell</option><option>Makati</option><option>BGC</option></select></div>
+      <div class="field"><label for="size">Area (㎡) / 面積（㎡）</label><input id="size" type="number" min="0" step="0.01" placeholder="0"></div>
+      <div class="field"><label for="price">Planned purchase price (PHP) / 予定購入価格（PHP）</label><input id="price" type="number" min="0" step="1" placeholder="0"></div>
+      <div class="field"><label for="interior">Estimated fit-out cost (PHP) / 内装費用概算（PHP）</label><input id="interior" type="number" min="0" step="1" placeholder="0"></div>
+      <div class="field"><label for="furniture">Furniture condition / 家具状態</label><select id="furniture"><option>Full Furnished</option><option>Semi Furnished</option><option>Bare</option></select></div>
+      <div class="field span-2"><label for="rent">Estimated monthly rent / 想定月額家賃</label><div class="rent-row"><input id="rent" type="number" min="0" step="1"><button id="resetRent" type="button">Reset to estimate / 自動推定に戻す</button><span id="rentStatus" class="status auto">Estimated / 自動推定</span></div><p class="note">Middle base rent / Middle基準家賃。High／Low apply 110%／90% / High・Lowは110%／90%を適用</p></div>
+      <div class="field"><label for="costRate">Purchase costs / 購入諸費用率 <span class="hint">default / 初期値 8.25%</span></label><input id="costRate" type="number" min="0" step="0.01" value="8.25"></div>
+      <div class="field"><label for="rentGrowth">Rent growth / 賃料上昇率 <span class="hint">default / 初期値 2.5%</span></label><input id="rentGrowth" type="number" step="0.01" value="2.5"></div>
+      <div class="field"><label for="valueGrowth">Property value growth / 物件価値上昇率 <span class="hint">default / 初期値 5.25%</span></label><input id="valueGrowth" type="number" step="0.01" value="5.25"></div>
+      <div class="field"><label for="tax">Annual Property Tax (PHP) / 年間Property Tax（PHP）</label><div class="tax-row"><input id="tax" type="number" min="0" step="1" placeholder="Auto / 自動"><span id="taxStatus" class="status auto">Estimated / 推定</span></div><p class="note">Blank = purchase price × 0.20% / 空欄＝購入価格×0.20%</p></div>
+    </div>
+  </section>
+
+  <section class="panel investment"><div><h2>Total Investment / 総投資額</h2><div id="totalInvestment" class="big-number">₱0</div></div><div class="metrics"><div class="metric"><span>Purchase price / 購入価格</span><strong id="purchaseOut">₱0</strong></div><div class="metric"><span>Purchase costs / 購入諸費用</span><strong id="costOut">₱0</strong></div><div class="metric"><span>Fit-out / 内装費</span><strong id="interiorOut">₱0</strong></div></div></section>
+
+  <section class="panel"><div class="section-title"><h2>Scenario Overview / シナリオ比較</h2><small>Admin: ₱100/㎡/month / Admin費：₱100/㎡/月</small></div><div id="scenarioCards" class="cards"></div></section>
+  <section class="panel"><div class="section-title"><h2>5-Year Comparison / 5年後比較</h2><small>Simulation profit includes estimated asset value / 保有資産評価額を含む利益</small></div><div id="fiveYear" class="compare"></div></section>
+  <section class="panel"><div class="section-title"><h2>10-Year Comparison / 10年後比較</h2></div><div id="tenYear" class="compare"></div></section>
+  <section class="panel"><div class="section-title"><h2>1–10 Year Details / 1〜10年詳細</h2><small>Restoration cost every 2 years / 原状回復費は2年ごと</small></div><div id="tabs" class="tabs"></div><div id="detailTable" class="table-wrap"></div></section>
+  <footer class="footer-note">Version 1.0<br>For simulation purposes only.<br>Actual rent, taxes, expenses and property values may differ.<br>本シミュレーターは参考値です。<br>実際の賃料・税金・経費・物件価値とは異なる場合があります。</footer>
+</main>
+<script>
+  const AREA_RENT={Rockwell:1060,Makati:950,BGC:1050}, FURNITURE={"Full Furnished":1.2,"Semi Furnished":1,"Bare":.9}, SCENARIOS={High:1.1,Middle:1,Low:.9};
+  const $=id=>document.getElementById(id), num=id=>Math.max(0,Number($(id).value)||0), pct=id=>Number($(id).value)||0;
+  let manualTax=false, manualRent=false, activeScenario='High';
+  function php(v){return Number.isFinite(v)?'₱'+Math.round(v).toLocaleString('en-US'):'₱0'}
+  function percent(v){return Number.isFinite(v)?v.toFixed(2)+'%':'0.00%'}
+  function calculate(){
+    const size=num('size'), price=num('price'), interior=num('interior'), costRate=pct('costRate')/100, rentGrowth=pct('rentGrowth')/100, valueGrowth=pct('valueGrowth')/100;
+    const estimatedTax=price*.002, tax=manualTax&&$('tax').value!==''?num('tax'):estimatedTax, admin=size*100*12, costs=price*costRate, total=price+costs+interior;
+    const estimatedBase=size*AREA_RENT[$('areaName').value]*FURNITURE[$('furniture').value], rentBase=manualRent&&$('rent').value!==''?num('rent'):estimatedBase;
+    const result={size,price,interior,costs,total,tax,admin,base:estimatedBase,rentBase,rentGrowth,valueGrowth,scenarios:{}};
+    for(const [name,mult] of Object.entries(SCENARIOS)){
+      const years=[]; let cumulativeRent=0,cumulativeNOI=0;
+      for(let year=1;year<=10;year++){
+        const monthly=rentBase*mult*Math.pow(1+rentGrowth,year-1), annualRent=monthly*12, restoration=year%2===0?monthly*4:0, noi=annualRent-admin-tax-restoration, value=price*Math.pow(1+valueGrowth,year), realYield=total?noi/total*100:0;
+        cumulativeRent+=annualRent;cumulativeNOI+=noi;years.push({year,monthly,annualRent,admin,tax,restoration,noi,realYield,cumulativeRent,cumulativeNOI,value});
+      }
+      const first=years[0]; result.scenarios[name]={name,mult,years,first,five:years[4],ten:years[9]};
+    }
+    return result;
+  }
+  function renderCompare(target,year){
+    const r=calculate();$(target).innerHTML=Object.values(r.scenarios).map(s=>{const y=s[year], profit=y.cumulativeNOI+y.value-r.total, roi=r.total?profit/r.total*100:0;return `<div class="compare-card"><h3>${s.name} / ${s.name==='High'?'高':s.name==='Middle'?'中':'低'}</h3><p>Monthly rent / 月額賃料 <b>${php(y.monthly)}</b></p><p>Cumulative rent / 累計賃料収入 <b>${php(y.cumulativeRent)}</b></p><p>Cumulative NOI / 累計NOI <b>${php(y.cumulativeNOI)}</b></p><p>Estimated property value / 推定物件価値 <b>${php(y.value)}</b></p><p>Appreciation / 値上がり額 <b>${php(y.value-r.price)}</b></p><p>Total profit / 総合利益 <b>${php(profit)}</b></p><p>ROI <b>${percent(roi)}</b></p></div>`}).join('');
+  }
+  function render(){
+    const r=calculate();if(!manualRent)$('rent').value=Math.round(r.base);$('rentStatus').textContent=manualRent&&$('rent').value!==''?'Manual input / 手入力':'Estimated / 自動推定';$('rentStatus').className='status '+(manualRent&&$('rent').value!==''?'manual':'auto');if(!manualTax)$('tax').value=Math.round(r.tax);$('totalInvestment').textContent=php(r.total);$('purchaseOut').textContent=php(r.price);$('costOut').textContent=php(r.costs);$('interiorOut').textContent=php(r.interior);$('taxStatus').textContent=manualTax&&$('tax').value!==''?'Manual / 実額入力':'Estimated / 推定';$('taxStatus').className='status '+(manualTax&&$('tax').value!==''?'manual':'auto');
+    $('scenarioCards').innerHTML=Object.values(r.scenarios).map(s=>`<article class="card scenario ${s.name.toLowerCase()}"><div class="bar"></div><div class="scenario-body"><h3>${s.name} <small>${s.name==='High'?'高シナリオ':s.name==='Middle'?'中シナリオ':'低シナリオ'} / ${Math.round(s.mult*100)}% rent factor</small></h3><div class="stat-list"><div><span>Monthly rent / 想定月額賃料</span><strong>${php(s.first.monthly)}</strong></div><div><span>Annual rent / 年間賃料</span><strong>${php(s.first.annualRent)}</strong></div><div><span>Gross yield / 表面利回り</span><strong>${percent(r.price?s.first.annualRent/r.price*100:0)}</strong></div><div><span>Year 1 NOI / 初年度NOI</span><strong>${php(s.first.noi)}</strong></div><div><span>Real yield / 実質利回り</span><strong>${percent(s.first.realYield)}</strong></div></div></div></article>`).join('');
+    renderCompare('fiveYear','five');renderCompare('tenYear','ten');renderTabs(r);
+  }
+  function renderTabs(r){$('tabs').innerHTML=Object.keys(SCENARIOS).map(n=>`<button class="${n===activeScenario?'active':''}" data-scenario="${n}">${n} / ${n==='High'?'高':n==='Middle'?'中':'低'}</button>`).join('');$('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{activeScenario=b.dataset.scenario;renderTabs(r)});const s=r.scenarios[activeScenario];$('detailTable').innerHTML=`<table><thead><tr><th>Year / 年</th><th>Monthly rent / 月額賃料</th><th>Annual rent / 年間賃料収入</th><th>Admin</th><th>Property Tax</th><th>Restoration / 原状回復費</th><th>NOI</th><th>Real yield / 実質利回り</th><th>Cumulative rent / 累計賃料収入</th><th>Cumulative NOI / 累計NOI</th><th>Property value / 推定物件価値</th></tr></thead><tbody>${s.years.map(y=>`<tr><td>${y.year}</td><td>${php(y.monthly)}</td><td>${php(y.annualRent)}</td><td>${php(y.admin)}</td><td>${php(y.tax)}</td><td>${php(y.restoration)}</td><td>${php(y.noi)}</td><td>${percent(y.realYield)}</td><td>${php(y.cumulativeRent)}</td><td>${php(y.cumulativeNOI)}</td><td>${php(y.value)}</td></tr>`).join('')}</tbody></table>`}
+  $('tax').addEventListener('input',()=>{manualTax=$('tax').value!=='';render()});
+  $('rent').addEventListener('input',()=>{manualRent=$('rent').value!=='';render()});
+  $('resetRent').addEventListener('click',()=>{manualRent=false;render()});
+  $('price').addEventListener('input',()=>{if(!manualTax)$('tax').value='';render()});
+  document.querySelectorAll('input,select').forEach(el=>{if(el.id!=='tax'&&el.id!=='price')el.addEventListener('input',render);el.addEventListener('change',render)});render();
+</script>
+</body>
+</html>
